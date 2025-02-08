@@ -67,3 +67,6 @@ MVPリリース時（予定）
 - **CSSフレームワーク: Tailwind CSS予定**
 - **インフラ:render予定**
 - **データベースサーバ: PostgreSQL**
+
+## ■ 画面遷移図
+https://www.figma.com/design/4v32TfwW2cUtEedJ7a2Sy0/%E8%B2%AF%E9%87%91%E7%B0%BF?node-id=78-839&t=dLYSHSN1CiiTjiYy-0
