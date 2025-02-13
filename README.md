@@ -70,3 +70,6 @@ MVPリリース時（予定）
 
 ## ■ 画面遷移図
 https://www.figma.com/design/4v32TfwW2cUtEedJ7a2Sy0/%E8%B2%AF%E9%87%91%E7%B0%BF?node-id=78-839&t=dLYSHSN1CiiTjiYy-0
+
+## ■ ER図
+https://dbdiagram.io/d/%E8%B2%AF%E9%87%91%E7%B0%BF-ER%E5%9B%B3-67ace792263d6cf9a0f1f539
