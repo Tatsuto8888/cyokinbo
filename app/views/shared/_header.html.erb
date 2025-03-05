@@ -1,0 +1,25 @@
+<header style="background-color: oklch(0.865 0.127 207.078);" class="text-white p-4 flex justify-between items-center">
+  <!-- 左上のアプリ名 -->
+  <h1 class="text-xl font-bold">
+    <%= link_to "貯金簿", root_path, class: "hover:text-gray-200" %>
+  </h1>
+
+  <div class="flex space-x-4">
+    <%= link_to "ログイン", "#", class: "hover:text-gray-200" %>
+    <%= link_to "新規登録", "#", class: "hover:text-gray-200" %>
+
+  <!-- ハンバーガーメニュー実装 -->
+  <button class="text-white text-3xl cursor-pointer" id="hamburger-button">
+    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+      <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"/>
+    </svg>
+  </button>
+
+  <nav id="menu" class="hidden bg-gray-800 text-white p-4 space-y-4">
+    <%= link_to "利用規約", "#", class: "block hover:text-gray-200" %>
+    <%= link_to "プライバシーポリシー", "#", class: "block hover:text-gray-200" %>
+    <%= link_to "お問い合わせ", "#", class: "block hover:text-gray-200" %>
+  </nav>
+
+  </div>
+</header>
