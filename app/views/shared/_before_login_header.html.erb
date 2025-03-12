@@ -5,8 +5,8 @@
   </h1>
 
   <div class="flex space-x-4">
-    <%= link_to "今日の貯金", '#', class: "hover:text-gray-200" %>
-    <%= link_to "みんなの貯金", '#', class: "hover:text-gray-200" %>
+    <%= link_to "ログイン", new_user_session_path, class: "hover:text-gray-200" %>
+    <%= link_to "新規登録", new_user_registration_path, class: "hover:text-gray-200" %>
 
   <button class="text-white text-3xl cursor-pointer" id="hamburger-button">
     <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
@@ -15,9 +15,6 @@
   </button>
 
   <nav id="menu" class="hidden bg-gray-800 text-white p-4 space-y-4">
-    <% if user_signed_in? %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "block hover:text-gray-200" %>
-    <% end %>
     <%= link_to "利用規約", "#", class: "block hover:text-gray-200" %>
     <%= link_to "プライバシーポリシー", "#", class: "block hover:text-gray-200" %>
     <%= link_to "お問い合わせ", "#", class: "block hover:text-gray-200" %>
