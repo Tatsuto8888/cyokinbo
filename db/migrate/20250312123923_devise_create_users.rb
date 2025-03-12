@@ -9,7 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.2]
 
       # ユーザーネーム追加
       t.string :user_name,          null: false
-      
+
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
