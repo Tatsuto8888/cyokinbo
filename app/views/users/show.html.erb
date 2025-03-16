@@ -1,2 +1,16 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="max-w-lg mx-auto p-8 bg-white rounded-lg shadow-md shadow-gray-400 mt-16 border border-gray-300 relative">
+  <p class="text-2xl font-semibold text-center">ユーザーネーム: <%= @user.user_name %></p>
+
+  <!-- 「…」アイコン -->
+  <button id="menuButton" class="absolute top-4 right-4">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 absolute top-4 right-4">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+    </svg>
+  </button>
+
+  <!-- メニュー（デフォルトで非表示にしている） -->
+  <div id="menuDropdown" class="absolute top-12 right-4 bg-white border border-gray-300 shadow-lg rounded-lg p-2 hidden">
+    <%= link_to "マイページ編集", "#", class: "block px-4 py-2 hover:bg-gray-200" %>
+    <%= link_to "貯金登録", "#", class: "block px-4 py-2 hover:bg-gray-200" %>
+  </div>
+</div>
