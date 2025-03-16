@@ -8,6 +8,14 @@
     <%= link_to "今日の貯金", '#', class: "hover:text-gray-200" %>
     <%= link_to "みんなの貯金", '#', class: "hover:text-gray-200" %>
 
+    <%= link_to user_path(current_user) do %>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+      </svg>
+    <% end %>
+
+  
+
   <button class="text-white text-3xl cursor-pointer" id="hamburger-button">
     <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
       <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"/>
@@ -16,7 +24,7 @@
 
   <nav id="menu" class="hidden bg-gray-800 text-white p-4 space-y-4">
     <% if user_signed_in? %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "block hover:text-gray-200" %>
+      <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
     <% end %>
     <%= link_to "利用規約", "#", class: "block hover:text-gray-200" %>
     <%= link_to "プライバシーポリシー", "#", class: "block hover:text-gray-200" %>
