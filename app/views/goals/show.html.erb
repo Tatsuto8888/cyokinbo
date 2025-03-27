@@ -1,0 +1,45 @@
+<div class="max-w-4xl mx-auto mt-10 p-10 bg-white shadow-lg rounded-lg text-center">
+  <!-- タイトル（太字） -->
+  <h1 class="text-2xl font-bold mb-6"><%= @goal.title %></h1>
+
+  <!-- 貯金情報 -->
+  <p class="text-lg">目標金額: <%= @goal.target_amount %>円</p>
+  <p class="text-lg">現在の貯金額: <%= @goal.total_savings %>円</p>
+  <p class="text-lg mb-6">目標金額まで残り: <%= @goal.remaining_amount %>円</p>
+</div>
+
+<!-- エラーメッセージ表示 -->
+<% if @saving && @saving.errors.any? %>
+  <div class="max-w-4xl mx-auto mt-4 p-4 bg-red-100 border border-red-500 text-red-700 rounded-lg">
+    <ul>
+      <% @saving.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<!-- 貯金入力フォーム -->
+<div class="max-w-4xl mx-auto mt-4 p-4 bg-white shadow-md rounded-lg">
+  <%= form_with(model: [@goal, @goal.savings.build], local: true, class: "space-y-4") do |form| %>
+    <div class="flex items-center justify-center space-x-4">
+      <!-- ラベル -->
+      <%= form.label :amount, "貯金額", class: "text-gray-700 font-semibold w-1/4" %>
+
+      <!-- 貯金額入力 -->
+      <%= form.text_field :amount, class: "w-1/2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500", placeholder: "半角数字で金額を入力してください" %>
+      <span class="ml-2">円</span>
+    </div>
+
+    <!-- ボタン -->
+    <div class="flex justify-center space-x-4 mt-4">
+      <div>
+        <%= link_to "キャンセル", goals_path, class: "bg-gray-400 text-white px-6 py-3 rounded-full shadow-md hover:bg-gray-500 flex items-center justify-center" %>
+      </div>
+
+      <div>
+        <%= form.submit "貯金", class: "bg-blue-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-600 focus:outline-none" %>
+      </div>
+    </div>
+  <% end %>
+</div>

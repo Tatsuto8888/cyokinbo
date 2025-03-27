@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :user_name, presence: true # 追記
+
+  has_many :goals, dependent: :destroy
 end

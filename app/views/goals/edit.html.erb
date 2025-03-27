@@ -1,0 +1,32 @@
+<% if @goal.errors.any? %>
+  <div class="max-w-2xl mx-auto mt-4 p-4 bg-red-100 border border-red-500 text-red-700 rounded-lg text-center">
+    <ul>
+      <% @goal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+  <%= form_with(model: @goal, local: true) do |form| %>
+    <!-- タイトル入力 -->
+    <div class="mb-4">
+      <%= form.label :title, "タイトル", class: "block text-gray-700 font-semibold" %>
+      <%= form.text_field :title, class: "w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <!-- 目標金額入力 -->
+    <div class="mb-4">
+      <%= form.label :target_amount, "目標金額", class: "block text-gray-700 font-semibold" %>
+      <%= form.text_field :target_amount, class: "w-1/2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500", placeholder: "半角数字で金額を入力してください" %>
+      <span class="ml-2">円</span>
+    </div>
+
+    <!-- ボタンエリア（フォーム内） -->
+    <div class="mt-6 flex justify-center space-x-4">
+      <%= form.submit "更新する", class: "bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none" %>
+      <%= link_to "戻る", goals_path, class: "bg-gray-400 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-500" %>
+    </div>
+  <% end %>
+</div>
