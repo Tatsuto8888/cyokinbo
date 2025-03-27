@@ -1,0 +1,31 @@
+<div class="max-w-4xl mx-auto mt-10 mb-32"> <!-- マージンを大きくして、ボタンが重ならないようにする -->
+  <h1 class="text-2xl font-bold text-center mb-6">貯金一覧</h1>
+
+  <ul class="space-y-4">
+    <% @goals.each do |goal| %>
+      <li class="bg-white shadow-md rounded-lg p-4 flex justify-between items-center border border-gray-300 w-full max-w-4xl mx-auto">
+        <!-- 左側: タイトル -->
+        <p class="text-lg font-semibold">
+          <%= link_to goal.title, goal_path(goal), class: "text-blue-600 hover:underline" %>
+        </p>
+
+        <!-- 右側: 編集 & 削除ボタン -->
+        <div class="flex space-x-2">
+          <%= link_to "編集", edit_goal_path(goal), class: "bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600" %>
+
+          <%= link_to "削除", goal_path(goal), method: :delete, data: { turbo_method: :delete, confirm: "本当に削除しますか？" }, class: "bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600" %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<!-- 下部に固定されたボタン -->
+<div class="fixed bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-4 z-10 mb-12"> <!-- 余分なマージンを追加 -->
+  <!-- キャンセルボタン -->
+  <%= link_to "キャンセル", user_path(current_user), class: "bg-gray-400 text-white px-6 py-3 rounded-full shadow-md hover:bg-gray-500" %>
+
+  <!-- 貯金登録ボタン -->
+  <%= link_to "貯金登録をする", new_goal_path, class: "bg-blue-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-600" %>
+  
+</div>
