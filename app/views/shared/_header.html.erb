@@ -5,8 +5,11 @@
   </h1>
 
   <div class="flex space-x-4">
-    <%= link_to "今日の貯金", '#', class: "hover:text-gray-200" %>
-    <%= link_to "みんなの貯金", '#', class: "hover:text-gray-200" %>
+    <% if user_signed_in? %>
+      <%= link_to "今日の貯金", new_post_path, class: "hover:text-gray-200" %>
+    <% end %>
+
+    <%= link_to "みんなの貯金", posts_path, class: "hover:text-gray-200" %>
 
     <%= link_to user_path(current_user) do %>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
