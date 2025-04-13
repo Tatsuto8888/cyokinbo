@@ -8,13 +8,15 @@
           <div class="border border-gray-300 rounded-lg shadow-sm p-4 bg-white h-full">
             <p class="text-lg font-semibold mb-2 flex items-center">
               <i class="fa-solid fa-circle-user fa-2x mr-2 text-gray-500"></i>
-              <%= post.user.user_name %>
+              <%= link_to post.user.user_name, user_path(post.user), class: "text-blue-600 hover:underline" %>
             </p>
             <p class="text-gray-600 mb-1">
-              <span class="font-semibold">今日の貯金額：</span><%= post.amount %>円
+              <span class="font-semibold">今日の貯金額：</span><%= post.amount %>
             </p>
+            <div class="my-4"></div>
             <p class="text-gray-700 mb-2">
-              <span class="font-semibold">感想：</span><%= post.body %>
+              <span class="font-semibold">感想</span><br>
+              <span class="whitespace-pre-line"><%= post.body %></span>
             </p>
 
             <% if current_user == post.user %> <!-- 別のユーザーは編集・削除できないように -->
@@ -23,7 +25,7 @@
                 <%= link_to "削除", post_path(post), method: :delete, data: { turbo_method: :delete, confirm: "本当に削除しますか？" }, class: "bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600" %>
               </div>
             <% end %>
-            
+
           </div>
         </div>
       <% end %>

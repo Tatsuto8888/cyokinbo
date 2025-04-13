@@ -1,0 +1,39 @@
+<!-- アイコン（中央・枠の完全上） -->
+<div class="flex justify-center mt-10 mb-[-20px]">
+  <i class="fa-solid fa-circle-user fa-4x text-gray-500"></i>
+</div>
+
+<!-- プロフィール編集フォーム -->
+<div class="max-w-lg mx-auto p-8 bg-white rounded-lg shadow-md shadow-gray-400 mt-16 border border-gray-300">
+  <h2 class="text-2xl font-semibold text-center mb-6">プロフィール編集</h2>
+
+  <%= form_with model: @user, url: user_path(@user), method: :patch, local: true do |f| %>
+    <div class="mb-4">
+      <%= f.label :user_name, "ユーザーネーム", class: "block text-gray-700 font-medium" %>
+      <%= f.text_field :user_name, class: "w-full border border-gray-300 rounded px-3 py-2 mt-1" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :email, "メールアドレス", class: "block text-gray-700 font-medium" %>
+      <%= f.email_field :email, class: "w-full border border-gray-300 rounded px-3 py-2 mt-1" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :goal_title, "貯金目標！", class: "block text-gray-700 font-medium" %>
+      <%= f.text_field :goal_title, placeholder: "目標のタイトルを入力しましょう（例～〇〇を買うため！）", class: "w-full border border-gray-300 rounded px-3 py-2 mt-1" %>
+    </div>
+
+    <div class="mb-6">
+      <%= f.label :self_introduction, "自己紹介文", class: "block text-gray-700 font-medium" %>
+      <%= f.text_area :self_introduction, rows: 5, class: "w-full border border-gray-300 rounded px-3 py-2 mt-1" %>
+    </div>
+
+    <!-- 下部にボタンを配置 -->
+    <div class="mt-6">
+      <div class="flex justify-center space-x-4">
+        <%= link_to "戻る", user_path(@user), class: "bg-gray-400 text-white px-6 py-3 rounded-full shadow-md hover:bg-gray-500" %>
+        <%= f.submit "プロフィールを保存", class: "bg-blue-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-600" %>
+      </div>
+    </div>
+  <% end %>
+</div>
