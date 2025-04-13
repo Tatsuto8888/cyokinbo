@@ -30,4 +30,31 @@ document.addEventListener("turbo:load", function() {
           }
       });
   }
+
+  const postIcon = document.getElementById("postIcon");
+  const userPosts = document.getElementById("userPosts");
+  const userProfile = document.getElementById("userProfile");
+
+  if (postIcon && userPosts) {
+    postIcon.addEventListener("click", function () {
+      // プロフィールを非表示にし、投稿履歴を表示
+      if (userProfile) {
+        userProfile.classList.add("hidden");
+      }
+      userPosts.classList.remove("hidden");
+    });
+  }
+
+  // プロフィールアイコンのクリックイベント
+  const profileIcon = document.getElementById("profileIcon");
+
+  if (profileIcon && userProfile) {
+    profileIcon.addEventListener("click", function () {
+      // 投稿履歴を非表示にし、プロフィールを表示
+      if (userPosts) {
+        userPosts.classList.add("hidden");
+      }
+      userProfile.classList.remove("hidden");
+    });
+  }
 });
