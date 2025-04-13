@@ -42,7 +42,8 @@ class GoalsController < ApplicationController
   private
 
   def set_goal
-    @goal = current_user.goals.find(params[:id])
+    @goal = current_user.goals.find_by(id: params[:id])
+    redirect_to root_path, alert: "この目標にはアクセスできません。" unless @goal
   end
 
   def goal_params
