@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [ :index ]
   before_action :set_post, only: [ :show, :edit, :update, :destroy ]
-  before_action :authorize_user!, only: [ :edit, :update, :destroy ]
 
   def index
     @posts = Post.includes(:user).order(created_at: :desc)
@@ -42,13 +41,8 @@ class PostsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find(params[:id])
-  end
-
-  def authorize_user!
-    unless @post.user == current_user
-      redirect_to posts_path, alert: "他のユーザーの投稿を編集・削除することはできません。"
-    end
+    @post = current_user.posts.find_by(id: params[:id])
+    redirect_to root_path, alert: "この投稿にはアクセスできません。" unless @post
   end
 
   def post_params
