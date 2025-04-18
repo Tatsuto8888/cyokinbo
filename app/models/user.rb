@@ -6,6 +6,10 @@ class User < ApplicationRecord
 
   validates :user_name, presence: true # 追記
 
+  validates :email, presence: true
+
+  validates :password, presence: true, on: :create
+
   has_many :goals, dependent: :destroy
   has_many :posts, dependent: :destroy
 end

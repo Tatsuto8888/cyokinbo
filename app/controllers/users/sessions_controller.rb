@@ -2,7 +2,23 @@
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  def create
+    if params[:user][:email].blank? || params[:user][:password].blank?
+      self.resource = User.new(sign_in_params)
 
+      if params[:user][:email].blank?
+        resource.errors.add(:email, "を入力してください")
+      end
+
+      if params[:user][:password].blank?
+        resource.errors.add(:password, "を入力してください")
+      end
+
+      respond_with_navigational(resource) { render :new }
+    else
+      super
+    end
+  end
   # GET /resource/sign_in
   # def new
   #   super

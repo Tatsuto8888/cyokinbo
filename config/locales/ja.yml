@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      post: 貯金目標
+      saving: 金額
+    attributes:
+      user:
+        email: メールアドレス
+        last_name: 姓
+        first_name: 名
+        password: パスワード
+        password_confirmation: パスワード確認
+        user_name: ユーザネーム
+        self_introduction: 自己紹介文
+        goal_title: 貯金目標
+      post:
+        title: タイトル
+        target_amount: 目標金額
+      saving:
+        amount: 金額
+
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"
+      short: "%m/%d %H:%M"
+      long: "%Y年%m月%d日 %H:%M"
+
+  date:
+    formats:
+      default: "%Y/%m/%d"
+      short: "%m/%d"
+      long: "%Y年%m月%d日"

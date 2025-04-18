@@ -37,7 +37,10 @@
   <div class="bg-gray-50 border border-gray-300 rounded-lg shadow-md p-4">
     <% if @posts.any? %>
       <% @posts.each do |post| %>
-        <div class="bg-white p-4 mb-4 rounded border border-gray-200">
+        <div class="bg-white p-4 mb-4 rounded border border-gray-200 relative">
+          <div class="absolute top-2 right-4 text-sm text-gray-400">
+            <%= l(post.created_at, format: :long) %>
+          </div>
           <p class="text-gray-600 mb-1">
             <span class="font-semibold">今日の貯金額：</span><%= post.amount %>
           </p>
