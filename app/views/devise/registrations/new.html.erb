@@ -1,44 +1,57 @@
-<div class="container mx-auto flex justify-center items-center py-12 px-4">
-  <div class="login-section w-full max-w-4xl"> <!-- max-w-lg → max-w-4xl に変更して横幅を広げる -->
-    <div class="card text-center pt-8 mx-auto bg-white shadow-xl rounded-lg">
-      <h1 class="text-3xl font-bold mb-8">アカウント作成</h1>
+<div class="max-w-lg mx-auto p-8 bg-white rounded-lg shadow-md shadow-gray-400 mt-16 border border-gray-300">
+  <h2 class="text-2xl font-semibold text-center mb-6">アカウント作成</h2>
 
-      <div class="card-body">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= render "devise/shared/error_messages", resource: resource %>
-          <div class="mb-6">
-            <%= f.text_field :user_name, class: "form-input w-full px-6 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500", placeholder: "ユーザ名" %>
-          </div>
-
-          <div class="mb-6">
-            <%= f.email_field :email, class: "form-input w-full px-6 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500", placeholder: "メールアドレス" %>
-          </div>
-
-          <div class="mb-6">
-            <%= f.password_field :password, class: "form-input w-full px-6 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500", placeholder: "パスワード" %>
-          </div>
-
-          <div class="mb-8">
-            <%= f.password_field :password_confirmation, class: "form-input w-full px-6 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500", placeholder: "パスワード確認" %>
-          </div>
-
-          <%= f.submit "アカウント作成", class: "btn w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600" %>
-        <% end %>
-
-        <% if notice %>
-          <p class="text-green-500 mt-6"><%= notice %></p>
-        <% elsif alert %>
-          <p class="text-red-500 mt-6"><%= alert %></p>
-        <% end %>
-      </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <div class="mb-4">
+      <% if resource.errors[:user_name].any? %>
+        <div class="text-red-600 text-sm mb-1">
+          <%= resource.errors.full_messages_for(:user_name).join(", ") %>
+        </div>
+      <% end %>
+      <%= f.label :user_name, "ユーザーネーム", class: "block text-gray-700 font-medium" %>
+      <%= f.text_field :user_name, class: "w-full border border-gray-300 rounded px-3 py-2 mt-1" %>
     </div>
 
-    <div class="text-center py-6 mt-8 mx-auto">
-      <div class="card-text">
-        既にアカウントを持っている？
-        <%= link_to "ログイン", new_user_session_path, class: "text-blue-500 hover:text-blue-700 text-lg" %>
+    <div class="mb-4">
+      <% if resource.errors[:email].any? %>
+        <div class="text-red-600 text-sm mb-1">
+          <%= resource.errors.full_messages_for(:email).join(", ") %>
+        </div>
+      <% end %>
+      <%= f.label :email, "メールアドレス", class: "block text-gray-700 font-medium" %>
+      <%= f.email_field :email, class: "w-full border border-gray-300 rounded px-3 py-2 mt-1" %>
+    </div>
+
+    <div class="mb-4">
+      <% if resource.errors[:password].any? %>
+        <div class="text-red-600 text-sm mb-1">
+          <%= resource.errors.full_messages_for(:password).join(", ") %>
+        </div>
+      <% end %>
+      <%= f.label :password, "パスワード", class: "block text-gray-700 font-medium" %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "w-full border border-gray-300 rounded px-3 py-2 mt-1" %>
+    </div>
+
+    <div class="mb-6">
+      <% if resource.errors[:password_confirmation].any? %>
+        <div class="text-red-600 text-sm mb-1">
+          <%= resource.errors.full_messages_for(:password_confirmation).join(", ") %>
+        </div>
+      <% end %>
+      <%= f.label :password_confirmation, "パスワード確認", class: "block text-gray-700 font-medium" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full border border-gray-300 rounded px-3 py-2 mt-1" %>
+    </div>
+
+    <div class="mt-6">
+      <div class="flex justify-center">
+        <%= f.submit "アカウント作成", class: "bg-blue-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-600" %>
       </div>
     </div>
+  <% end %>
+
+  <div class="text-center py-6 mt-8">
+    <p>既にアカウントをお持ちですか？
+      <%= link_to "ログイン", new_user_session_path, class: "text-blue-500 hover:text-blue-700 text-lg" %>
+    </p>
   </div>
 </div>
-
