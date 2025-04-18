@@ -2,7 +2,7 @@ ja:
   activerecord:
     models:
       user: ユーザー
-      post: 貯金目標
+      goal: 貯金目標
       saving: 金額
     attributes:
       user:
@@ -14,7 +14,7 @@ ja:
         user_name: ユーザネーム
         self_introduction: 自己紹介文
         goal_title: 貯金目標
-      post:
+      goal:
         title: タイトル
         target_amount: 目標金額
       saving:
