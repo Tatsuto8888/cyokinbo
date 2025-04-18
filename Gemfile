@@ -20,6 +20,10 @@ gem "cssbundling-rails"
 gem "jbuilder"
 
 gem "devise" # deviseを追加
+
+gem "devise-i18n"
+
+gem "rails-i18n", "~> 7.0.0"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
