@@ -1,28 +1,29 @@
-<% if @goal.errors.any? %>
-  <div class="max-w-2xl mx-auto mt-4 p-4 bg-red-100 border border-red-500 text-red-700 rounded-lg text-center">
-    <ul>
-      <% @goal.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <div class="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
   <h1 class="text-2xl font-bold text-center mb-6">貯金登録をしよう！</h1>
 
-  <%= form_with(model: @goal, local: true) do |form| %>
+  <% if @goal.errors.any? %>
+    <div class="max-w-2xl mx-auto mt-4 p-4 bg-red-100 border border-red-500 text-red-700 rounded-lg text-center">
+      <ul>
+        <% @goal.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-4"></div>
+
+  <%= form_with(model: @goal, local: true, html: { class: "block w-full" }) do |form| %>
     <!-- タイトル -->
     <div class="mb-4 flex items-center justify-center">
       <%= form.label :title, "タイトル", class: "block text-gray-700 mr-4" %>
-      <%= form.text_field :title, class: "w-1/2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      <%= form.text_field :title, class: "w-[300px] p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
     </div>
 
     <!-- 目標金額入力 -->
     <div class="mb-4 flex items-center justify-center">
       <%= form.label :target_amount, "目標金額", class: "block text-gray-700 mr-4" %>
-      <%= form.text_field :target_amount, class: "w-1/2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500",
-      placeholder: "半角数字で金額を入力してください" %>
+      <%= form.text_field :target_amount, class: "w-[300px] p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500", placeholder: "半角数字で金額を入力してください" %>
       <span class="ml-2">円</span>
     </div>
 

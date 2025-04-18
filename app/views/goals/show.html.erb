@@ -8,19 +8,20 @@
   <p class="text-lg mb-6">目標金額まで残り: <%= @goal.remaining_amount %>円</p>
 </div>
 
-<!-- エラーメッセージ表示 -->
-<% if @saving && @saving.errors.any? %>
-  <div class="max-w-4xl mx-auto mt-4 p-4 bg-red-100 border border-red-500 text-red-700 rounded-lg">
-    <ul>
-      <% @saving.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <!-- 貯金入力フォーム -->
 <div class="max-w-4xl mx-auto mt-4 p-4 bg-white shadow-md rounded-lg">
+  <% if @saving && @saving.errors.any? %>
+    <div class="max-w-4xl mx-auto mt-4 p-4 bg-red-100 border border-red-500 text-red-700 rounded-lg">
+      <ul>
+        <% @saving.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-4"></div>
+
   <%= form_with(model: [@goal, @goal.savings.build], local: true, class: "space-y-4") do |form| %>
     <div class="flex items-center justify-center space-x-4">
       <!-- ラベル -->
