@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     resources :savings, only: [ :create ] # 貯金に関するルーティングをネスト
   end
 
-  resources :posts
+  resources :posts do
+    resources :comments, only: [ :create, :edit, :destroy, :update ], shallow: true
+  end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

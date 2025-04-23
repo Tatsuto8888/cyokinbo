@@ -5,14 +5,19 @@
     <div class="flex flex-wrap -mx-4">
       <% @posts.each do |post| %>
         <div class="w-full sm:w-1/2 lg:w-1/3 px-4 mb-6">
-          <div class="border border-gray-300 rounded-lg shadow-sm p-4 bg-white h-full relative">
+          <div 
+            class="border border-gray-300 rounded-lg shadow-sm p-4 bg-white h-full relative hover:bg-gray-50 transition cursor-pointer" 
+            onclick="if(event.target.closest('a, button, .no-card-click')) return; window.location='<%= post_path(post) %>'"
+          >
+            <!-- 日付を右上に配置 -->
             <div class="absolute top-2 right-2 text-sm text-gray-500">
               <%= l(post.created_at, format: :long) %>
             </div>
-            <p class="text-lg font-semibold mb-2 flex items-center">
+            
+            <div class="flex items-center mb-2">
               <i class="fa-solid fa-circle-user fa-2x mr-2 text-gray-500"></i>
-              <%= link_to post.user.user_name, user_path(post.user), class: "text-blue-600 hover:underline" %>
-            </p>
+              <%= link_to post.user.user_name, user_path(post.user), class: "text-yellow-500 hover:underline no-card-click" %>
+            </div>
             <p class="text-gray-600 mb-1">
               <span class="font-semibold">今日の貯金額：</span><%= post.amount %>
             </p>
@@ -22,13 +27,22 @@
               <span class="whitespace-pre-line"><%= post.body %></span>
             </p>
 
-            <% if current_user == post.user %> <!-- 別のユーザーは編集・削除できないように -->
+            <!-- コメントアイコンとコメント数（右下に配置） -->
+            <div class="flex items-center text-sm text-gray-500 mt-4">
+              <i class="fa-regular fa-message mr-1 text-lg"></i>
+              <span><%= post.comments.count %></span>
+            </div>
+
+            <% if current_user == post.user %>
               <div class="flex justify-end space-x-2 mt-2">
-                <%= link_to "編集", edit_post_path(post), class: "bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600" %>
-                <%= link_to "削除", post_path(post), method: :delete, data: { turbo_method: :delete, confirm: "本当に削除しますか？" }, class: "bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600" %>
+              <%= link_to edit_post_path(post), class: "text-blue-500 hover:text-blue-700 no-card-click" do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+              <% end %>
+              <%= link_to post_path(post), method: :delete, data: { turbo_method: :delete, confirm: "本当に削除しますか？" }, class: "text-blue-500 hover:text-blue-700 no-card-click" do %>
+                <i class="fa-regular fa-trash-can"></i>
+              <% end %>
               </div>
             <% end %>
-
           </div>
         </div>
       <% end %>
