@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   validates :password, presence: true, on: :create
 
+  has_many :comments, dependent: :destroy
+
   has_many :goals, dependent: :destroy
   has_many :posts, dependent: :destroy
 end
