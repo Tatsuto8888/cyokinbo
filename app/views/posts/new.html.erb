@@ -17,6 +17,11 @@
         "10000円以上"
       ]), { prompt: "選択してください" }, class: "border p-2 rounded w-full" %>
     </div>
+
+    <div class="mb-4">
+      <label for="tag_names" class="block font-medium">タグ</label>
+      <%= text_field_tag :tag_names, '', placeholder: "例: 貯金, 習慣化", class: "w-full border p-2 rounded" %>
+    </div>
   
     <!-- 本文 -->
     <div class="mb-4">

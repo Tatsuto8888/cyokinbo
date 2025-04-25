@@ -3,7 +3,11 @@ class PostsController < ApplicationController
   before_action :set_post, only: [ :edit, :update, :destroy ]
 
   def index
-    @posts = Post.includes(:user).order(created_at: :desc)
+    if params[:tag_name].present?
+      @posts = Post.joins(:tags).where(tags: { name: params[:tag_name] }).includes(:user).order(created_at: :desc)
+    else
+      @posts = Post.includes(:user).order(created_at: :desc)
+    end
   end
 
   def show
@@ -18,7 +22,10 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    tag_names = params[:tag_names].to_s.split(",").map(&:strip).uniq
+
     if @post.save
+      @post.save_tags(tag_names)
       redirect_to posts_path, notice: "投稿が作成されました。"
     else
       render :new
@@ -26,12 +33,18 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @tag_names = @post.tags.map(&:name).join(",")
   end
 
   def update
     if @post.update(post_params)
+      tag_names = params[:tag_names].to_s.split(",").map(&:strip).uniq
+      @post.tags.clear
+      @post.save_tags(tag_names)
+
       redirect_to posts_path, notice: "投稿が更新されました。"
     else
+      @tag_names = @post.tags.map(&:name).join(",")
       render :edit
     end
   end
