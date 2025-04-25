@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
+    get :tags, on: :collection
     resources :comments, only: [ :create, :edit, :destroy, :update ], shallow: true
   end
 
