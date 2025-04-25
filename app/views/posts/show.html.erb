@@ -28,6 +28,17 @@
           <span class="whitespace-pre-line"><%= @post.body %></span>
         </p>
 
+        <% if @post.tags.any? %>
+          <div class="mb-4">
+            <span class="font-semibold text-gray-700"></span>
+            <% @post.tags.each do |tag| %>
+              <span class="inline-block bg-yellow-400 text-white text-sm px-2 py-1 rounded-full mr-1">
+                <%= link_to "##{tag.name}", posts_path(tag_name: tag.name), class: "hover:underline" %>
+              </span>
+            <% end %>
+          </div>
+        <% end %>
+
         <!-- 編集・削除リンク（投稿者のみ） -->
         <% if current_user == @post.user %>
           <div class="flex justify-end space-x-2 mt-4">
